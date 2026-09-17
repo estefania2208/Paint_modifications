@@ -8,7 +8,7 @@ Exercises
 4. Complete triangle.
 5. Add width parameter.
 """
-
+import math
 from turtle import *
 
 from freegames import vector
@@ -38,7 +38,22 @@ def square(start, end):
 
 def circle(start, end):
     """Draw circle from start to end."""
-    pass  # TODO
+#we calculate the radius,calculating the hypotenuse
+    radius = math.hypot(end.x - start.x, end.y - start.y)
+    up()
+    goto(start.x, start.y - radius)
+#we are gonna set the starting point in the center
+    down()
+    begin_fill()
+
+    step =(2 * math.pi * radius)/360
+#we calculate the diameter and divide by 360
+    for _ in range(360):
+       forward(step)
+#we are gonna make a line with the specifications
+       left(1)
+
+    end_fill()
 
 
 def rectangle(start, end):
@@ -79,6 +94,8 @@ onkey(lambda: color('white'), 'W')
 onkey(lambda: color('green'), 'G')
 onkey(lambda: color('blue'), 'B')
 onkey(lambda: color('red'), 'R')
+onkey(lambda: color('yellow'), 'Y')
+#We add the color yellow in the console
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
 onkey(lambda: store('shape', circle), 'c')
